@@ -1,0 +1,153 @@
+body {
+  margin-left:100px;
+  margin-right:100px;
+  margin-bottom:20px;
+  margin-top:0px;
+  background-color:#5EFB6E;
+}
+.content {
+        text-align:center;
+}
+.content p{
+	text-align:left;
+}
+.content a{
+	text-align:left;
+}
+.footer {
+        text-align:center;
+        margin-top:20px;
+        border-top:1px solid #999;
+        padding-top:5px;
+        font-size:9pt;
+}
+body,td,th {
+        font-family:verdana,sans-serif;
+}
+th {
+        text-align:left;
+        background-color:#000;
+        color:#ffffff;
+}
+.header {
+        font-size:20pt;
+        font-weight:bold;
+}
+.headline {
+        border-bottom:1px solid #999;
+}
+.codename {
+        text-align:center;
+        font-size:9pt;
+        margin-bottom:10px;
+}
+h1.ptitle {
+        margin-bottom:2px;
+}
+.ptext {
+        text-align:justify;
+        margin-right:10px;
+}
+.ptext i {
+        font-weight:bold;
+}
+.ptext pre {
+        margin:0;
+}
+.ptext p {
+        margin-top:0;
+}
+.infobox {
+        margin-bottom:10px;
+        background-color:#ddddff;
+        padding:5px;
+        border:1px solid #ccccee;
+}
+.infobox h1 {
+        font-size:10pt;
+        font-weight:bold;
+        text-align:left;
+        margin:0;
+        text-align:center;
+        margin-bottom:3px;
+}
+.infobox ol {
+        margin-top:3px;
+        margin-bottom:3px;
+}
+.bigtimer {
+        text-align:center;
+        font-size:20pt;
+        margin-top:10px;
+        color:#008800;
+        margin-bottom:5px;
+}
+h1 {
+        font-size:20px;
+        text-align:left;
+}
+h2 {
+        font-size:16px;
+        margin-bottom:5px;
+		text-align:left;
+}
+h3 {
+        font-size:15px;
+        text-align:left;
+		text-decoration:underline;
+        margin-bottom:5px;
+}
+p {
+		font-size:15px;
+}
+a {
+        text-decoration:none;
+        color:#0000bb;
+}
+a:hover {
+        color:#000033;
+}
+.navig {
+        text-align:center;
+        padding-bottom:10px;
+        margin-top:10px;
+}
+.error {
+        color:#dd0000;
+        display:block;
+        margin-bottom:5px;
+}
+.success {
+        color:#008800;
+        display:block;
+        margin-bottom:5px;
+}
+.red {
+        color:#dd0000;
+        font-weight:bold;
+}
+.green {
+        color:#008800;
+        font-weight:bold;
+}
+.listing {
+        border-collapse:collapse;
+        border-width:1px;
+        border-color:#000;
+        border-style:solid;
+}
+.listing td,th {
+        text-align: center;
+        border-style:solid;
+        border-width:1px;
+        border-color:#000;
+        padding:3px;
+}
+.listing td {
+        background-color:#eeeeff;
+}
+pre {
+        text-align:left;
+        line-height:120%;
+        font-size:9pt;
+}
