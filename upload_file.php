@@ -27,8 +27,6 @@
 	//This combines the directory, the random file name, and the extension
 	$target = $dir . $ran2 . $ext;
 
-	echo $target . "<br />";
-
 	echo $_FILES['uploaded']['tmp_name'] . "<br />";
 	if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)){
 		echo "The file has been uploaded as ".$ran2.$ext."<br>";

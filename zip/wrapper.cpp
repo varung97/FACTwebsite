@@ -14,26 +14,32 @@ using namespace std;
 extern tree *T;
 extern int numTrees,numTaxas,rooted;
 
+void getlinewithCRerase(ifstream& fin, string& S) {
+    getline(fin, S);
+    if (S[S.length() - 1] == '\r') {
+        S.pop_back();
+    }
+}
+
 void nexReader(string s){
   //freopen(s.c_str(),"r",stdin); //Read in data
   ifstream fin(s.c_str());
 	string S;
   vector <string> trees;
-  getline(fin,S);
-  getline(fin,S);
-	while(S != "translate"){
-		if(S == "translate") break;
-		getline(fin,S);
+  getlinewithCRerase(fin,S);
+  getlinewithCRerase(fin,S);
+	while(S.rfind("translate", 0) != 0){
+		getlinewithCRerase(fin,S);
 	}
   printf("Inputting Taxas ...\n");
   while(1){
-    getline(fin,S);
+    getlinewithCRerase(fin,S);
     ++numTaxas;
     if(S[S.length()-1] == ';') break;
   }
   printf("Inputting Trees ...\n");
   while(1){
-    getline(fin,S);
+    getlinewithCRerase(fin,S);
     if(S == "END;") break;
     for(unsigned int i=0;i<S.length();++i)
       if(S[i] == '('){
