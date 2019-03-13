@@ -36,8 +36,8 @@
 		$output = stream_get_contents($outhandle,-1,-1);
 		pclose($outhandle);
 		echo "finished executing: " . $cmdLine . "<br />";
-		$cmdLine = "./a < " . $dir.$ran2."in" . " > " . $dir . $ran2 . "txt";
-		//$cmdLine = "a < " . $dir.$ran2."in" . " > " . $dir . $ran2 . "txt";
+		$cmdLine = "./FACT < " . $dir.$ran2."in" . " > " . $dir . $ran2 . "txt";
+		//$cmdLine = "FACT < " . $dir.$ran2."in" . " > " . $dir . $ran2 . "txt";
 		echo "executing: " . $cmdLine . "<br />";
 		$outhandle = popen($cmdLine, "r");
 		$output = stream_get_contents($outhandle,-1,-1);
