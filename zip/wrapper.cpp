@@ -37,7 +37,7 @@ void nexReader(string s){
     if(S == "END;") break;
     for(unsigned int i=0;i<S.length();++i)
       if(S[i] == '('){
-        trees.push_back(S.substr(i,S.length()-i));
+        trees.push_back(S.substr(i,S.length()-1));
         break;
       }
   }
@@ -123,7 +123,7 @@ string printTreeRecur(int* p, int node, int len, int* taxa_count, vector<int>* t
   bool leaf = true;
   stringstream ss;
   for(int i=0;i<len;i++)
-    if(p[i]==node) 
+    if(p[i]==node)
       leaf = false;
   if(leaf){
     ss << (*taxa_pool)[*taxa_count] << ":2.2222";

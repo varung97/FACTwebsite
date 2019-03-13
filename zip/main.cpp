@@ -46,12 +46,12 @@ string consensus[NUM_ALGO] = {
   "Majority Consensus - O(kn lg k)",
   "Majority Consensus - O(kn)",
 
-  "Greedy Consensus - O(kn^2 + kn^3 + n^2)", 
+  "Greedy Consensus - O(kn^2 + kn^3 + n^2)",
   "Greedy Consensus - O(kn^2)",
 
   "Loose Consensus - O(k^2 n^3)",
   "Loose Consensus - O(kn)",
-  
+
   "Majority-Rule(+) Consensus O(kn)",
 
   "Adams Consensus - O(kn^2)",
@@ -70,7 +70,7 @@ tree getConsensus(int x){
     case 0:
       ret = strictConsensus();
       break;
-      
+
     case 1:
       ret = majorityConsensusSlow();
       break;
@@ -80,24 +80,24 @@ tree getConsensus(int x){
     case 3:
       ret = majorityConsensusBest();
       break;
-      
+
     case 4:
       ret = greedyConsensusSlow();
       break;
     case 5:
       ret = greedyConsensusFast();
       break;
-    
+
     case 6:
       ret = looseConsensusSlow();
       break;
     case 7:
       ret = looseConsensusFast();
       break;
-      
+
     case 8:
       ret = majorityPlusConsensus();
-	break;    
+	break;
 
     case 9:
       ret = adamsConsensusSlow();
@@ -105,7 +105,7 @@ tree getConsensus(int x){
     case 10:
       ret = adamsConsensusFast();
       break;
-    
+
     default:
       break;
   }
@@ -160,7 +160,7 @@ int main(int argc, char** argv){
     nexGen(k, n, type);
     return 0;
   }
-  // ./a 
+  // ./a
   // nex.txt 1536 0
   /*
     ran-k-n-100-300 1536 1
