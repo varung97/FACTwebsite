@@ -11,31 +11,16 @@
 	$cnt = 0;
 	for($i = 0; $i < $N; $i++) $cnt += (1 << $array[$i]);
 
-	//We use the extension nex for our input file
-	$ext = 'nex';
-
-	//This line assigns a random number to a variable. You could also use a timestamp here if you prefer.
-	$ran = rand();
-
-	//This takes the random number (or timestamp) you generated and adds a . on the end, so it is ready of the file extension to be appended.
-	$ran2 = $ran . ".";
-
-	//This assigns the subdirectory you want to save into... make sure it exists!
-	$dir = "upload/";
-	//This combines the directory, the random file name, and the extension
-	$target = $dir . $ran2 . $ext;
-	$inputParams = $dir . $ran2 . "in";
+	//The target file consists of the following parts:
+	//1. The subdirectory you want to save into... make sure it exists!
+	//2. A random number as the filename. You could also use a timestamp here if you prefer.
+	//3. The extension, which we take to be .nex.
+	$target = "upload/" . rand() . ".nex";
 
 	// echo $_FILES['uploaded']['tmp_name'] . "<br />";
 	if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)){
 		// echo "The file has been uploaded as " . $target . "<br>";
-		$cmdLine = "echo " . $target . " " . $cnt . " " . $_POST["rooted"] . " > " . $inputParams;
-		// echo "executing: " . $cmdLine . "<br />";
-		$outhandle = popen($cmdLine,"r");
-		$output = stream_get_contents($outhandle,-1,-1);
-		pclose($outhandle);
-		// echo "finished executing: " . $cmdLine . "<br />";
-		$cmdLine = "./FACT < " . $inputParams;
+		$cmdLine = "echo " . $target . " " . $cnt . " " . $_POST["rooted"] . " | ./FACT";
 		// echo "executing: " . $cmdLine . "<br />";
 		$outhandle = popen($cmdLine, "r");
 		$output = stream_get_contents($outhandle,-1,-1);
@@ -43,7 +28,7 @@
 
 		echo $output;
 
-		$cmdLine = "rm " . $inputParams . "; rm " . $target;
+		$cmdLine = "rm " . $target;
 		// echo "executing: " . $cmdLine . "<br />";
 		$outhandle = popen($cmdLine, "r");
 		$output = stream_get_contents($outhandle,-1,-1);
