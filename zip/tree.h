@@ -30,6 +30,6 @@ struct tree{
   tree(int _N,int _cnt,bool RTD); //Constructor
 	tree(int _N,string s,bool RTD); //Constructor
   void precompute(); //Precomputing all the arrays in the structure
-  void printNex(); //Output the tree in NEXUS format
+  string printNex(); //Output the tree in NEXUS format
 };
 #endif

@@ -8,6 +8,7 @@
 #include <sstream>
 #include "wrapper.h"
 #include "tree.h"
+#include "FreqDiffTree.h"
 #include "random.h"
 using namespace std;
 

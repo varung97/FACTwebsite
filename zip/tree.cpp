@@ -133,7 +133,7 @@ void tree::precompute(){
 	assert(num == N);
 }
 
-void tree::printNex(){
+string tree::printNex(){
 	stack<pair<int,int> > S;
 	string ans = "";
 	S.push(pair<int,int>(root,-1));
@@ -157,5 +157,5 @@ void tree::printNex(){
 		else ans += ')';
 	}
 	ans += ';';
-	cout << ans << endl;
+	return ans;
 }

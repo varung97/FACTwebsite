@@ -24,8 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <ctime>
 #include <sstream>
 #include <sys/resource.h>
-#define NUM_ALGO 11
+#define NUM_ALGO 13
 #include "tree.h"
+#include "FreqDiffTree.h"
 #include "wrapper.h"
 #include "strict.h"
 #include "majority.h"
@@ -33,9 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "loose.h"
 #include "adams.h"
 #include "majorityplus.h"
+#include "freqdiff.h"
 using namespace std;
 
 int numTrees,numTaxas,rooted,rule,pre,cur;
+// TODO: Combine tree and FreqDiffTree classes
 tree *T;
 tree ans;
 string input;
@@ -55,12 +58,24 @@ string consensus[NUM_ALGO] = {
   "Majority-Rule(+) Consensus O(kn)",
 
   "Adams Consensus - O(kn^2)",
-  "Adams Consensus - O(kn lg n)"
+  "Adams Consensus - O(kn lg n)",
+
+  "Frequency Difference - O(kn lg^2 n)",
+  "Frequency Difference - O(kn lg n)"
 };
 
 void endProg(string s){
 	cout << s << endl;
 	exit(0);
+}
+
+vector<FreqDiffTree*> *treesToFreqDiffTrees(tree *T) {
+    vector<FreqDiffTree*> *FreqDiffT = new vector<FreqDiffTree*>();
+    for(int i=0; i<numTrees; ++i){
+        string newick_str = T[i].printNex();
+        FreqDiffT->push_back(new FreqDiffTree(newick_str));
+    }
+    return FreqDiffT;
 }
 
 tree getConsensus(int x){
@@ -105,6 +120,23 @@ tree getConsensus(int x){
     case 10:
       ret = adamsConsensusFast();
       break;
+
+    case 11:
+    {
+      vector<FreqDiffTree*> *FreqDiffT = treesToFreqDiffTrees(T);
+      bool centroid_paths = FreqDiffTree::get_taxas_num() > 1000;
+      FreqDiffTree* freq = freqdiff_knlog2n(*FreqDiffT, centroid_paths);
+      ret = tree(FreqDiffTree::get_taxas_num(), freq->to_newick(), true);
+      break;
+    }
+    case 12:
+    {
+      vector<FreqDiffTree*> *FreqDiffT = treesToFreqDiffTrees(T);
+      bool centroid_paths = FreqDiffTree::get_taxas_num() > 1000;
+      FreqDiffTree* freq = freqdiff_knlogn(*FreqDiffT, centroid_paths);
+      ret = tree(FreqDiffTree::get_taxas_num(), freq->to_newick(), true);
+      break;
+    }
 
     default:
       break;
@@ -175,7 +207,7 @@ int main(int argc, char** argv){
     if( (rule&(1<<i)) > 0){
       ans = getConsensus(i);
       printf("%s Tree constructed, it has %d nodes\n",consensus[i].c_str(),ans.cnt);
-      ans.printNex();
+      cout << ans.printNex() << endl;
       printf("Time elapsed = %.3lf\n",(double)(cur-pre)/(double)CLOCKS_PER_SEC);
       printf("-------------------------------------------------------------------------------------\n");
     }
